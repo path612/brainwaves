@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ <meta charset="utf-8">
+ <title>SWIFT match</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="A simple crud app made with the vue js and django”>
+ <meta name="keywords" content="vuejs, django,rest,stock data">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+ 
+</head>
+
+<body>
+<div id="starting">
+<div class ="container">
+<div class="row">
+<h1> 
+<button class="btn btn-success" v-on:click.prevent="getList()"> Get All Trades </button>
+</h1>
+<h2>
+<div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search by reference " v-model="searchTerm" aria-label="Search">
+            <!-- <button class="btn btn-outline-success my-2 my-sm-0" v-on:click.prevent="Search()">Search</button> -->
+          <!-- <br>&nbsp;<label for="start">Start date:</label>
+<input type="date" :value="myDate && myDate.toISOString().split('T')[0]" placeholder=" Date "v-model="startDate">
+&nbsp;<label for="start">End Date:</label>
+<input type="date" :value="myDate && myDate.toISOString().split('T')[0]" placeholder="End date " v-model="endDate">
+<button class="btn btn-outline-success my-2 my-sm-0" v-on:click.prevent="getStockByRangeDate()">Get</button> -->
+          </div>
+
+</h2>
+<!-- <input type="date" :value="myDate && myDate.toISOString().split('T')[0]" v-model="startDate">
+<input type="date" :value="myDate && myDate.toISOString().split('T')[0]" v-model="endDate">
+<button class="btn btn-outline-success my-2 my-sm-0" v-on:click.prevent="getStockByRangeDate">Get</button> -->
+<button class="btn btn-success" v-on:click.prevent="getMatchCase()"> Get matches </button>
+
+
+<table class="table">
+ <thead>
+ <tr>
+<th scope="col">contractdate</th>
+<th scope="col">randoma</th>
+<th scope="col">partyA</th>
+<th scope="col">partyB</th>
+<th scope="col">isdaDate</th>
+<th scope="col">valueDate</th>
+<th scope="col">exchangeRate</th>
+<th scope="col">buyQuant</th>
+<th scope="col">settlement1</th>
+<th scope="col">sellQuant</th>
+<th scope="col">deliveryAgent1</th>
+<th scope="col">intermediatery</th>
+<th scope="col">settlement2</th>
+<th scope="col">beneficiary2</th>
+</tr>
+
+</thead>
+</div>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+ <script src= "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+ 
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+ <script type="text/javascript">
+ new Vue({
+     el:'#starting',
+     delimiters:['${','}'],
+     data:{    
+         details: '',   
+     searchTerm:'',
+     
+     },
+
+     methods:{
+        getMatchCase:function(){
+            let api_url='/matchcase';
+            this.$http.get(api_url)
+            .then((response)=>{
+                this.details = response.data
+
+            })
+            .catch((err)=>{
+                this.loading =false;
+                console.log(err);
+            })
+        }
+        
+     }
+    
+    });
+ </script>
+
+
+</body>
+</html>
